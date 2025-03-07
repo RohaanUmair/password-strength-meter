@@ -30,11 +30,11 @@ def check_password_strength(password):
     
     # Strength Rating
     if score == 4:
-        st.text("✅ Strong Password!")
+        st.success("✅ Strong Password!")
     elif score == 3:
-        st.text("⚠️ Moderate Password - Consider adding more security features.")
+        st.warning("⚠️ Moderate Password - Consider adding more security features.")
     else:
-        st.text("❌ Weak Password - Improve it using the suggestions above.")
+        st.error("❌ Weak Password - Improve it using the suggestions above.")
 
 
 # Title
