@@ -1,9 +1,16 @@
 import re
 import streamlit as st
+import string
+import random
 
 def check_password_strength(password):
     score = 0
     
+    # Commonly used passwords Check
+    if password == 'password123' or password == '123456':
+        st.error("❌ This password is used commonly, try Another.")
+        return
+
     # Length Check
     if len(password) >= 8:
         score += 1
@@ -47,3 +54,22 @@ password = st.text_input('Input Your Password to Check its Strength')
 # Check Password Strength
 if password:
     check_password_strength(password)
+
+
+
+# Generate Strong Password
+st.header('Generate Strong Password')
+generate_pass_btn = st.button('Generate')
+
+
+if generate_pass_btn:
+    uppercase_letters = string.ascii_uppercase
+    lowercase_letters = string.ascii_lowercase
+    numbers = string.digits
+    special_chars = '!@#$%^&*'
+
+    strong_password = random.sample(uppercase_letters, 2) + random.sample(lowercase_letters, 3) + random.sample(numbers, 2) + [random.choice(special_chars)]
+    random.shuffle(strong_password)
+    strong_password = ''.join(strong_password)
+
+    st.success(f"🔑 Generated Password: `{strong_password}`")
